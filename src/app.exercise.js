@@ -9,7 +9,7 @@ import {UnauthenticatedApp} from './unauthenticated-app'
 
 function App() {
   // 🐨 useState for the user
-  const [user, setUser] = React.useState(false)
+  const [user, setUser] = React.useState(null)
 
   // 🐨 create a login function that calls auth.login then sets the user
   const login = form => auth.login(form).then(u => setUser(u))
@@ -18,7 +18,10 @@ function App() {
   const register = form => auth.register(form).then(u => setUser(u))
 
   // 🐨 create a logout function that calls auth.logout() and sets the user to null
-  const logout = () => auth.logout().then(() => setUser(null))
+  const logout = () => {
+    auth.logout()
+    setUser(null)
+  }
 
   // 🐨 if there's a user, then render the AuthenticatedApp with the user and logout
 
